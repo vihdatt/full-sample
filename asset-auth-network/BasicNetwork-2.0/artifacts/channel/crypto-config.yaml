@@ -1,0 +1,60 @@
+
+OrdererOrgs:
+  # ---------------------------------------------------------------------------
+  # Orderer
+  # ---------------------------------------------------------------------------
+  - Name: Orderer
+    Domain: assetauth.vn
+    EnableNodeOUs: true
+
+    # ---------------------------------------------------------------------------
+    # "Specs" - See PeerOrgs below for complete description
+    # ---------------------------------------------------------------------------
+    Specs:
+      - Hostname: orderer
+        # SANS:
+        #     - "localhost"
+        #     - "127.0.0.1"
+      # - Hostname: orderer2
+      #   SANS:
+      #     - "localhost"
+      #     - "127.0.0.1"
+      # - Hostname: orderer3
+      #   SANS:
+      #       - "localhost"
+      #       - "127.0.0.1"
+
+# ---------------------------------------------------------------------------
+# "PeerOrgs" - Definition of organizations managing peer nodes
+# ---------------------------------------------------------------------------
+PeerOrgs:
+  # ---------------------------------------------------------------------------
+  # Org1
+  # ---------------------------------------------------------------------------
+  - Name: gov
+    Domain: gov.assetauth.vn
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      # Start: 5
+      # Hostname: {{.Prefix}}{{.Index}} # default
+      SANS:
+        - "localhost"
+
+    Users:
+      Count: 1
+
+  - Name: firm
+    Domain: firm.assetauth.vn
+    EnableNodeOUs: true
+
+    Template:
+      Count: 2
+      # Start: 5
+      # Hostname: {{.Prefix}}{{.Index}} # default
+      SANS:
+        - "localhost"
+
+    Users:
+      Count: 1
